@@ -35,34 +35,34 @@ const FavoriteItem: React.FC<Props> = ({ product }) => {
     <div className="col-span-6 sm:col-span-3 lg:col-span-4 xl:col-span-3 flex flex-col w-full h-full px-2 my-2 shadow-lg rounded-md bg-palette-card relative">
       <Link
         href={`/${product.category[0]}/${product.category[1]}/${product.category[2]}/${product.slug.current}`}
-      >
-        <a className="flex flex-col w-full p-3 flex-grow">
-          <div className="text-center">
-            {product?.image[0] && (
+        className="flex flex-col w-full p-3 flex-grow">
+
+        <div className="text-center">
+          {product?.image[0] && (
+            <Image
+              src={urlFor(product?.image[0]).url()}
+              alt="laptop image"
+              width={200}
+              height={185}
+              className="object-contain hover:scale-105 transition-transform !p-2"
+            />
+          )}
+          {product.discount ? (
+            <span className="block absolute -top-2 -right-2">
               <Image
-                src={urlFor(product?.image[0]).url()}
-                alt="laptop image"
-                width={200}
-                height={185}
-                className="object-contain hover:scale-105 transition-transform !p-2"
+                src="/images/discount-icon/discount.webp"
+                width={40}
+                height={40}
+                alt="discount-icon"
               />
-            )}
-            {product.discount ? (
-              <span className="block absolute -top-2 -right-2">
-                <Image
-                  src="/images/discount-icon/discount.webp"
-                  width={40}
-                  height={40}
-                  alt="discount-icon"
-                />
-              </span>
-            ) : null}
-          </div>
-          <div className="flex flex-col justify-between flex-grow">
-            <p>{product?.name}</p>
-            <ProductPrice price={product.price} discount={product.discount} />
-          </div>
-        </a>
+            </span>
+          ) : null}
+        </div>
+        <div className="flex flex-col justify-between flex-grow">
+          <p>{product?.name}</p>
+          <ProductPrice price={product.price} discount={product.discount} />
+        </div>
+
       </Link>
       <div className="flex flex-wrap items-center mb-3 mx-4">
         <button

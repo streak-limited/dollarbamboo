@@ -31,10 +31,12 @@ const Newest = () => {
       </div>
 
       <div className="text-center">
-        <Link href="/newestProducts">
-          <a className="inline-block py-3 px-8 md:px-12 mt-4 text-sm md:text-base bg-palette-primary text-palette-side rounded-xl shadow-lg">
-            {t.seeAllNewProducts}
-          </a>
+        <Link
+          href="/newestProducts"
+          className="inline-block py-3 px-8 md:px-12 mt-4 text-sm md:text-base bg-palette-primary text-palette-side rounded-xl shadow-lg">
+
+          {t.seeAllNewProducts}
+
         </Link>
       </div>
     </div>

@@ -71,9 +71,9 @@ const DropDown = forwardRef<HTMLDivElement, Props>(({ dropDown }, ref) => {
                     <Link
                       href={`/${activeMenuItemText}/${dropDown.title}/${item}`}
                     >
-                      <a>
-                        <div onClick={closeNavbar}>{t[`${item}`]}</div>
-                      </a>
+
+                      <div onClick={closeNavbar}>{t[`${item}`]}</div>
+
                     </Link>
                   </div>
                 );

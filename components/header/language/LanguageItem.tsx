@@ -17,29 +17,32 @@ const LanguageItem: React.FC<Props> = ({ language, onCloseBox }) => {
   }
 
   return (
-    <Link href={`${router.asPath}`} locale={language}>
-      <a className="whitespace-nowrap flex justify-between items-center py-1 md:py-2">
-        <div className="flex items-center" onClick={() => onCloseBox(false)}>
-          <input
-            type="radio"
-            id={language}
-            name="language"
-            value={lang}
-            className="block accent-rose-600"
-            checked={locale === language ? true : false}
-            onChange={onChangeHandler}
-          />
-          <label
-            htmlFor={language}
-            className={`font-farsi mx-3 grow ${
-              locale === language && "font-bold"
-            }`}
-          >
-            {t[`${language}`]}
-          </label>
-        </div>
-      </a>
-    </Link>
+    (<Link
+      href={`${router.asPath}`}
+      locale={language}
+      className="whitespace-nowrap flex justify-between items-center py-1 md:py-2">
+
+      <div className="flex items-center" onClick={() => onCloseBox(false)}>
+        <input
+          type="radio"
+          id={language}
+          name="language"
+          value={lang}
+          className="block accent-rose-600"
+          checked={locale === language ? true : false}
+          onChange={onChangeHandler}
+        />
+        <label
+          htmlFor={language}
+          className={`font-farsi mx-3 grow ${
+            locale === language && "font-bold"
+          }`}
+        >
+          {t[`${language}`]}
+        </label>
+      </div>
+
+    </Link>)
   );
 };
 

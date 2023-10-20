@@ -1,21 +1,21 @@
-import React from "react";
-import { IProduct } from "../../lib/types/products";
-import Breadcrumb from "../UI/Breadcrumb";
-import ImageSection from "./ImageSection";
-import DetailsSection from "./DetailsSection";
-import Benefits from "../Benefits";
-import SimilarProducts from "./SimilarProducts";
+import React from 'react'
+import { IProduct } from '../../lib/types/products'
+import Breadcrumb from '../UI/Breadcrumb'
+import ImageSection from './ImageSection'
+import DetailsSection from './DetailsSection'
+import Benefits from '../Benefits'
+import SimilarProducts from './SimilarProducts'
 
 interface Props {
-  product: IProduct;
-  products: IProduct[];
+  product: IProduct
+  products: IProduct[]
 }
 const ProductDetails: React.FC<Props> = ({ product, products }) => {
   const similarProductsList = products
     .filter(
-      (similarProduct) => similarProduct.slug.current !== product.slug.current
+      (similarProduct) => similarProduct.slug.current !== product.slug.current,
     )
-    .slice(0, 10);
+    .slice(0, 10)
 
   return (
     <div className="flex flex-col">
@@ -31,7 +31,7 @@ const ProductDetails: React.FC<Props> = ({ product, products }) => {
         <SimilarProducts products={similarProductsList} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDetails;
+export default ProductDetails

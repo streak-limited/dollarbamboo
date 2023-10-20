@@ -15,7 +15,7 @@ const ExtraMenu = () => {
           >
             <menuItem.icon />
             <Link href={menuItem.href}>
-              <a>{t[`${menuItem.title}`]}</a>
+              {t[`${menuItem.title}`]}
             </Link>
           </div>
         );
