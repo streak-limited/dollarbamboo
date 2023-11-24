@@ -142,19 +142,6 @@ export async function login(signInData: SignInDto) {
     })
     .eq('id', data?.user?.id)
 
-  // Check if the user is an admin.
-  // const { data: userData, error: userError } = await supabase
-  //     .from("users")
-  //     .select("type")
-  //     .eq("id", data?.user?.id)
-  //     .single();
-
-  // if (userError) {
-  //     throw new Error(userError.message);
-  // }
-
-  // const userType = userData.type;
-
   return data
 }
 

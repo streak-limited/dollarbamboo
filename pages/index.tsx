@@ -18,10 +18,12 @@ const Banners = dynamic(() => import('../components/banners'), { ssr: false })
 
 import { IProduct } from '../lib/types/products'
 import { newestProductsFn } from '../utils/sortByTimeStamp'
+import { useAuth } from '@/utils/authProvider'
 
 const Home: NextPage<{ products: IProduct[] }> = ({ products }) => {
   const dispatch = useDispatch()
-
+  const { user } = useAuth()
+  console.log('user', user)
   useEffect(() => {
     //add products to offers list
     const offersProducts = products.filter((item) => item.discount)

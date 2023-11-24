@@ -1,10 +1,10 @@
 'use client'
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { Session } from '@supabase/supabase-js'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useQuery } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
 
 export const AuthContext = createContext({
   loading: true,
@@ -96,7 +96,7 @@ export const AuthProvider = (props: { [x: string]: any; accessToken: any }) => {
       data: { subscription: authListener },
     } = supabase.auth.onAuthStateChange((event, currentSession) => {
       if (currentSession?.access_token !== accessToken) {
-        router.refresh()
+        // router.refresh()
       }
 
       // console.log("onAuthStateChange event", event);

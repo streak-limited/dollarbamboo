@@ -9,6 +9,7 @@ import { userInfoActions } from '../store/user-slice'
 import { getError } from '../utils/error'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import LoginContainer from '@/components/Login/LoginContainer'
 const Login: NextPage = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -36,13 +37,7 @@ const Login: NextPage = () => {
       console.log(getError(err))
     }
   }
-  return (
-    <EnteringBox
-      title="login"
-      submitHandler={LoginHandler}
-      errorMessage={errorMessage}
-    />
-  )
+  return <LoginContainer />
 }
 
 export default Login
