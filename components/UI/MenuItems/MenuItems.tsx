@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import { megaMenuActions } from '../../../store/megaMenu-slice'
 import { useLanguage } from '../../../hooks/useLanguage'
-import menuItems from '../../../mock/menuItems'
 import { HiChevronRight, HiChevronLeft } from 'react-icons/hi'
 import { IDropDown } from '../../../lib/types/dropDown'
 import { useRouter } from 'next/router'
@@ -21,6 +20,7 @@ interface Props {
     index: number,
     activeItemName: string,
   ) => void
+  menuItems: TransformedCategory[] | undefined
 }
 
 const MenuItems: React.FC<Props> = (props) => {
@@ -45,73 +45,88 @@ const MenuItems: React.FC<Props> = (props) => {
   )
   return (
     <ul className="rounded-lg">
-      {menuItems.map((item, index) => {
-        return (
-          <li
-            className="py-3 md:py-3 transition-color duration-300 hover:text-palette-primary font-bold"
-            key={item.category}
-          >
-            {width <= 768 ? (
-              <div
-                className={`flex items-center mt-3 px-5  cursor-pointer text-sm ${
-                  index === activeMenuItemIndex ? 'md:text-palette-primary' : ''
-                }`}
-                onClick={() =>
-                  onMenuItemClickHandler(
-                    item.productsGroup,
-                    item.category,
-                    index,
-                  )
-                }
-                onMouseOver={() =>
-                  props.onMouseOver?.(item.productsGroup, index, item.category)
-                }
-              >
-                <item.icon className="w-6 h-6 " />
+      {props &&
+        props.menuItems &&
+        props.menuItems.map((item, index) => {
+          return (
+            <li
+              className="py-3 md:py-3 transition-color duration-300 hover:text-palette-primary font-bold"
+              key={item.category}
+            >
+              {width <= 768 ? (
                 <div
-                  className={`mx-4 grow ${
-                    !item.productsGroup ? 'text-gray-400 font-normal' : ''
+                  className={`flex items-center mt-3 px-5  cursor-pointer text-sm ${
+                    index === activeMenuItemIndex
+                      ? 'md:text-palette-primary'
+                      : ''
                   }`}
+                  onClick={() =>
+                    onMenuItemClickHandler(
+                      item.productsGroup,
+                      item.category,
+                      index,
+                    )
+                  }
+                  onMouseOver={() =>
+                    props.onMouseOver?.(
+                      item.productsGroup,
+                      index,
+                      item.category,
+                    )
+                  }
                 >
-                  {t[item.category]}
+                  <item.icon className="w-6 h-6 " />
+
+                  <div
+                    className={`mx-4 grow ${
+                      !item.productsGroup ? 'text-gray-400 font-normal' : ''
+                    }`}
+                  >
+                    {t[item.category]}
+                  </div>
+                  {item.productsGroup ? (
+                    <ArrowDirection style={{ fontSize: '1rem' }} />
+                  ) : null}
                 </div>
-                {item.productsGroup ? (
-                  <ArrowDirection style={{ fontSize: '1rem' }} />
-                ) : null}
-              </div>
-            ) : (
-              <Link
-                href={`/${item.category}`}
-                className={`flex items-center mt-3 px-5  cursor-pointer text-sm ${
-                  index === activeMenuItemIndex ? 'md:text-palette-primary' : ''
-                }`}
-                onClick={() =>
-                  onMenuItemClickHandler(
-                    item.productsGroup,
-                    item.category,
-                    index,
-                  )
-                }
-                onMouseOver={() =>
-                  props.onMouseOver?.(item.productsGroup, index, item.category)
-                }
-              >
-                <item.icon className="w-6 h-6 " />
-                <div
-                  className={`mx-4 grow ${
-                    !item.productsGroup ? 'text-gray-400 font-normal' : ''
+              ) : (
+                <Link
+                  href={`/${item.category}`}
+                  className={`flex items-center mt-3 px-5  cursor-pointer text-sm ${
+                    index === activeMenuItemIndex
+                      ? 'md:text-palette-primary'
+                      : ''
                   }`}
+                  onClick={() =>
+                    onMenuItemClickHandler(
+                      item.productsGroup,
+                      item.category,
+                      index,
+                    )
+                  }
+                  onMouseOver={() =>
+                    props.onMouseOver?.(
+                      item.productsGroup,
+                      index,
+                      item.category,
+                    )
+                  }
                 >
-                  {t[item.category]}
-                </div>
-                {item.productsGroup ? (
-                  <ArrowDirection style={{ fontSize: '1rem' }} />
-                ) : null}
-              </Link>
-            )}
-          </li>
-        )
-      })}
+                  <item.icon className="w-6 h-6 " />
+                  <div
+                    className={`mx-4 grow ${
+                      !item.productsGroup ? 'text-gray-400 font-normal' : ''
+                    }`}
+                  >
+                    {t[item.category]}
+                  </div>
+                  {item.productsGroup ? (
+                    <ArrowDirection style={{ fontSize: '1rem' }} />
+                  ) : null}
+                </Link>
+              )}
+            </li>
+          )
+        })}
     </ul>
   )
 }

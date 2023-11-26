@@ -1,25 +1,25 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { useLanguage } from "../../hooks/useLanguage";
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+import { useLanguage } from '../../hooks/useLanguage'
 
 interface Props {
-  name: string;
-  title: string;
-  description: string;
+  name: string
+  title: string
+  description: string
   styles: {
-    backgroundColor: string;
-    flexDirection: string;
-    paddingInline: string;
-    paddingBlock: string;
-    textAlign?: string;
-    gridRow: string;
-    gridColumn: string;
-  };
-  href: string;
-  imgSrc: string;
-  imgWidth: number;
-  imgHeight: number;
+    backgroundColor: string
+    flexDirection: string
+    paddingInline: string
+    paddingBlock: string
+    textAlign?: string
+    gridRow: string
+    gridColumn: string
+  }
+  href: string
+  imgSrc: string
+  imgWidth: number
+  imgHeight: number
 }
 const CategoryLgBox: React.FC<Props> = ({
   name,
@@ -31,7 +31,7 @@ const CategoryLgBox: React.FC<Props> = ({
   imgWidth,
   imgHeight,
 }) => {
-  const { t } = useLanguage();
+  const { t } = useLanguage()
 
   return (
     <div
@@ -44,10 +44,9 @@ const CategoryLgBox: React.FC<Props> = ({
         <p className="text-sm mt-2">{t[`${description}`]}</p>
         <Link
           href={href}
-          className="inline-block py-3 px-2 2xl:px-4 mt-4 bg-palette-primary hover:scale-105 transition-transform duration-300 shadow-xl ltr:text-sm rtl:text-xs text-palette-side rounded-lg">
-
+          className="inline-block py-3 px-2 2xl:px-4 mt-4 bg-palette-primary hover:scale-105 transition-transform duration-300 shadow-xl ltr:text-sm rtl:text-xs text-palette-side rounded-lg"
+        >
           {t.seeAllProducts}
-
         </Link>
       </div>
       <Image
@@ -58,7 +57,7 @@ const CategoryLgBox: React.FC<Props> = ({
         className="drop-shadow-lg hover:scale-95 transition-transform duration-300 "
       />
     </div>
-  );
-};
+  )
+}
 
-export default CategoryLgBox;
+export default CategoryLgBox

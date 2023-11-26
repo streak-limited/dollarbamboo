@@ -43,8 +43,8 @@ const Layout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
     fetchData()
   }, [])
 
-  console.log('session', session)
-  console.log('user', user)
+  // console.log('session', session)
+  // console.log('user', user)
   return (
     <Provider store={store}>
       <Providers>
