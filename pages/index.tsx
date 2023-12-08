@@ -52,7 +52,6 @@ export default Home
 export const getStaticProps = async () => {
   const productQuery = `*[_type=='product']`
   const products = await client.fetch(productQuery)
-
   return {
     props: {
       products,
