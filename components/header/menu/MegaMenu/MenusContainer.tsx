@@ -24,7 +24,6 @@ const MenusContainer: React.FC<MenusContainerProps> = ({ menuItems }) => {
     dispatch(activeMenuItemActions.setActiveMenuItemIndex(activeItemIndex))
     dispatch(activeMenuItemActions.setActiveMenuItemText(activeItemName))
   }
-  console.log('subMenuItems```', subMenuItems)
   // let categories = allCategories?.filter((c) => c.parent_id == null)
   // categories?.sort((a, b) => a.display_order - b.display_order)
 
@@ -38,7 +37,7 @@ const MenusContainer: React.FC<MenusContainerProps> = ({ menuItems }) => {
       setSubMenuItems(menuItems[0].productsGroup)
       return () => {
         dispatch(activeMenuItemActions.setActiveMenuItemIndex(0))
-        dispatch(activeMenuItemActions.setActiveMenuItemText('digital'))
+        dispatch(activeMenuItemActions.setActiveMenuItemText('Digital'))
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,8 +1,17 @@
-import { IProduct } from "./products";
+import { Product } from './product'
+import { IProduct } from './products'
 export interface IFavorite {
-  items: IProduct[];
+  items: IProduct[]
 }
 
 export interface IFavoriteRootState {
-  favorite: IFavorite;
+  favorite: IFavorite
+}
+
+export interface Favorite {
+  items: Product[]
+}
+
+export interface FavoriteRootState {
+  favorite: Favorite
 }

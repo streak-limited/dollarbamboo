@@ -1,46 +1,48 @@
-import type { NextPage } from "next";
-import { GetStaticProps, GetStaticPaths } from "next";
-import { client } from "../../lib/client";
-import { IProduct } from "../../lib/types/products";
-import ProductList from "../../components/productList/ProductList";
-import { ICategoryPathsParams } from "../../lib/types/pagePathsParams";
+import type { NextPage } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
+import { client } from '../../lib/client'
+import { IProduct } from '../../lib/types/products'
+import ProductList from '../../components/productList/ProductList'
+import { ICategoryPathsParams } from '../../lib/types/pagePathsParams'
+import { useQuery } from '@tanstack/react-query'
+import supabase from '@/lib/supabase'
+import { useRouter } from 'next/router'
+import { Product } from '@/lib/types/product'
 
 const categoryPage: NextPage<{
-  products: IProduct[];
-}> = ({ products }) => {
-  return (
-    <div>
-      <ProductList productList={products} />
-    </div>
-  );
-};
+  // products: IProduct[];
+}> = ({}) => {
+  const router = useRouter()
+  const catParam = router.query.category
 
-export default categoryPage;
+  const {
+    data: products,
+    isLoading: productsIsLoading,
+    error: productsErrorIsLoading,
+    refetch: productsRefetch,
+  } = useQuery({
+    queryKey: ['query-products-by-category-id-in-category', catParam],
+    queryFn: async () => {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*, product_images(*), options(*, variants(*)), addons(*)')
+          .eq('shop_id', '104')
+          .filter('category', 'cs', `{"${catParam}"}`)
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const query = `*[_type=="product"]{
-    "category":category[0]
-  }`;
-  const products = await client.fetch(query);
-  const paths = products.map((product: ICategoryPathsParams) => ({
-    params: {
-      category: product.category,
+          .order('created_at', {
+            ascending: false,
+          })
+        return data as Product[]
+      } catch (error) {
+        // Handle the error appropriately, e.g., log it or throw a custom error
+        console.error('Error fetching user data:', error)
+        throw new Error('Failed to fetch user data')
+      }
     },
-  }));
-  return {
-    fallback: "blocking",
-    paths,
-  };
-};
+    enabled: !!catParam,
+  })
+  return <div>{products && <ProductList productList={products} />}</div>
+}
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const category = context.params?.category;
-  const productQuery = `*[_type=='product'&& category[0]=="${category}"]`;
-  const products = await client.fetch(productQuery);
-
-  return {
-    props: {
-      products: products,
-    },
-  };
-};
+export default categoryPage

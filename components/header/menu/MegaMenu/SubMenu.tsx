@@ -19,7 +19,6 @@ const SubMenu: React.FC<Props> = ({ subMenuItems }) => {
     (state: IActiveMenuItemRootState) =>
       state.activeMenuItem.activeMenuItemText,
   )
-  console.log('subMenuItems', subMenuItems)
   return (
     <div className="flex flex-col px-6 py-5 w-full">
       <div className="flex items-center hover:text-palette-primary transition-color duration-300">

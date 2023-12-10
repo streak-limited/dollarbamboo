@@ -6,70 +6,51 @@ import ProductList from '../../../components/productList/ProductList'
 import { ISubCategoryPathsParams } from '../../../lib/types/pagePathsParams'
 import { useQuery } from '@tanstack/react-query'
 import supabase from '@/lib/supabase'
+import { Product } from '@/lib/types/product'
+import { useRouter } from 'next/router'
 
 const subCategory: NextPage<{
   // products: IProduct[]
 }> = ({}) => {
+  const router = useRouter()
+  const catParam = router.query.category
+  const subCatParam = router.query.subCategory
+  console.log('searchParams', catParam, subCatParam)
+
   const {
     data: products,
     isLoading: productsIsLoading,
     error: productsErrorIsLoading,
     refetch: productsRefetch,
   } = useQuery({
-    queryKey: ['query-products-by-category-id'],
+    queryKey: [
+      'query-products-by-category-id-in-sub-category',
+      catParam,
+      subCatParam,
+    ],
     queryFn: async () => {
       try {
         const { data, error } = await supabase
           .from('products')
-          .select('*, categories(*)')
-          // .filter('shops.merchant_id', 'eq', )
-          // .filter('parent_id', 'is', null)
+          .select('*, product_images(*), options(*, variants(*)), addons(*)')
+          .eq('shop_id', '104')
+          .filter('category', 'cs', `{"${catParam}"}`)
+          .filter('sub_category', 'cs', `{"${subCatParam}"}`)
+
           .order('created_at', {
             ascending: false,
           })
-        // router.refresh();
-        return data as IProduct[]
+        return data as Product[]
       } catch (error) {
         // Handle the error appropriately, e.g., log it or throw a custom error
         console.error('Error fetching user data:', error)
         throw new Error('Failed to fetch user data')
       }
     },
-    // enabled: !!merchantId,
+    enabled: !!catParam || !!subCatParam,
   })
-  console.log('products', products)
+  // console.log('products', products)
   return <div>{products && <ProductList productList={products} />}</div>
 }
 
 export default subCategory
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const query = `*[_type=="product"]{
-//     "category":category[0],
-//     "subCategory":category[1],
-//   }`
-//   const products = await client.fetch(query)
-//   const paths = products.map((product: ISubCategoryPathsParams) => ({
-//     params: {
-//       category: product.category.toString(),
-//       subCategory: product.subCategory.toString(),
-//     },
-//   }))
-//   return {
-//     fallback: 'blocking',
-//     paths,
-//   }
-// }
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const subCategory = context.params?.subCategory
-//   const category = context.params?.category
-//   const productQuery = `*[_type=='product'&& category[0]=="${category}" && category[1]=="${subCategory}"]`
-//   const products = await client.fetch(productQuery)
-
-//   // return {
-//   //   props: {
-//   //     products: products,
-//   //   },
-//   // }
-// }

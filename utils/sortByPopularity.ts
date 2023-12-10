@@ -1,8 +1,9 @@
-import { IProduct } from "../lib/types/products";
+import { Product } from '@/lib/types/product'
+import { IProduct } from '../lib/types/products'
 
 export const sortByPoPularity = (
-  product1: IProduct,
-  product2: IProduct
+  product1: Product,
+  product2: Product,
 ): number => {
-  return product2.starRating - product1.starRating;
-};
+  return product2.starRating - product1.starRating
+}

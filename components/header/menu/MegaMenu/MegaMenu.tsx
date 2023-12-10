@@ -37,7 +37,11 @@ const MegaMenu = () => {
     queryKey: ['query-categories-in-category-container'],
     queryFn: async () => {
       try {
-        const { data, error } = await supabase.from('categories').select('*')
+        const { data, error } = await supabase
+          .from('categories')
+          .select('*')
+          .filter('type', 'eq', 'product')
+          .filter('shop_id', 'eq', '104')
 
         return data as ProductCategory[]
       } catch (error) {
@@ -46,6 +50,7 @@ const MegaMenu = () => {
       }
     },
   })
+  // console.log('allCategories', allCategories)
 
   const transformCategories = (categories: ProductCategory[]): any[] => {
     const rootCategories = categories.filter((cat) => cat.has_children)
@@ -76,14 +81,14 @@ const MegaMenu = () => {
     return []
   }, [allCategories])
 
-  console.log('allCategories')
+  // console.log('allCategories')
   useEffect(() => {
     if (transformedCategories && transformedCategories.length > 0) {
       setMenuItems(transformedCategories)
     }
   }, [transformedCategories])
 
-  console.log('transformedCategories', menuItems)
+  // console.log('transformedCategories', menuItems)
   return (
     <div
       className="flex items-center"

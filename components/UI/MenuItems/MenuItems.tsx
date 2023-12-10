@@ -82,7 +82,7 @@ const MenuItems: React.FC<Props> = (props) => {
                       !item.productsGroup ? 'text-gray-400 font-normal' : ''
                     }`}
                   >
-                    {t[item.category]}
+                    {item.category}
                   </div>
                   {item.productsGroup ? (
                     <ArrowDirection style={{ fontSize: '1rem' }} />
@@ -90,7 +90,7 @@ const MenuItems: React.FC<Props> = (props) => {
                 </div>
               ) : (
                 <Link
-                  href={`/${item.category}`}
+                  href={item.category}
                   className={`flex items-center mt-3 px-5  cursor-pointer text-sm ${
                     index === activeMenuItemIndex
                       ? 'md:text-palette-primary'
@@ -117,7 +117,7 @@ const MenuItems: React.FC<Props> = (props) => {
                       !item.productsGroup ? 'text-gray-400 font-normal' : ''
                     }`}
                   >
-                    {t[item.category]}
+                    {item.category}
                   </div>
                   {item.productsGroup ? (
                     <ArrowDirection style={{ fontSize: '1rem' }} />

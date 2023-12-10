@@ -9,9 +9,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SortedProductsListActions } from '../../store/sortedProductList-slice'
 import { useRouter } from 'next/router'
 import { IProductListRootState } from '../../lib/types/productList'
+import { Product, ProductListRootState } from '@/lib/types/product'
 
 interface Props {
-  productList: IProduct[]
+  productList: Product[]
 }
 const ProductList: React.FC<Props> = ({ productList }) => {
   const router = useRouter()
@@ -32,12 +33,14 @@ const ProductList: React.FC<Props> = ({ productList }) => {
   }, [dispatch, productList, selectedRadioBtn])
 
   const sortedProductList = useSelector(
-    (state: IProductListRootState) => state.sortedProductsList.productsList,
+    (state: ProductListRootState) => state.sortedProductsList,
   )
 
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setSelectedRadioBtn(e.currentTarget.id)
   }
+
+  // console.log('productList', sortedProductList)
 
   return (
     <div>
@@ -48,8 +51,9 @@ const ProductList: React.FC<Props> = ({ productList }) => {
         {isInNewestProductsPage && productList.length ? (
           <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
             {productList
-              ? productList.map((product: IProduct) => {
-                  return <Card key={product.slug.current} product={product} />
+              ? productList.map((product: Product) => {
+                  // console.log('product', product)
+                  return <Card key={product.id} product={product} />
                 })
               : null}
           </div>
@@ -60,8 +64,10 @@ const ProductList: React.FC<Props> = ({ productList }) => {
               onChangeSelectedBtn={onChangeHandler}
             />
             <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
-              {sortedProductList.map((product: IProduct) => {
-                return <Card key={product.slug.current} product={product} />
+              {sortedProductList.map((product: Product) => {
+                // console.log('product', product)
+
+                return <Card key={product.id} product={product} />
               })}
             </div>
           </div>

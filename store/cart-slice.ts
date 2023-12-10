@@ -1,9 +1,10 @@
+import { Product } from '@/lib/types/product'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICart } from '../lib/types/cart'
+import { Cart } from '@/lib/types/cart'
 import { IProduct } from '../lib/types/products'
 import { calculateDiscountPercentage } from '../utils/calculateDiscountPercentage'
 
-const initialState: ICart = {
+const initialState: Cart = {
   items: [],
   totalQuantity: 0,
   totalAmount: 0,
@@ -14,13 +15,13 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItemToCart(
-      state: ICart,
-      action: PayloadAction<{ product: IProduct; quantity: number }>,
+      state: Cart,
+      action: PayloadAction<{ product: Product; quantity: number }>,
     ) {
       const newItem = action.payload.product
 
       const existingItem = state.items.find(
-        (item) => item.slug.current === newItem.slug.current,
+        (item) => item.title === newItem.title,
       )
 
       state.totalQuantity = state.totalQuantity + action.payload.quantity
@@ -28,32 +29,29 @@ const cartSlice = createSlice({
       state.totalAmount =
         state.totalAmount +
         action.payload.quantity *
-          (action.payload.product.discount
-            ? calculateDiscountPercentage(
-                action.payload.product.price,
-                action.payload.product.discount,
-              )
+          (action.payload.product.sale_price
+            ? action.payload.product.sale_price
             : action.payload.product.price)
 
       if (!existingItem) {
         const totalPrice =
-          (newItem.discount
-            ? calculateDiscountPercentage(newItem.price, newItem.discount)
-            : newItem.price) * action.payload.quantity
+          (newItem.sale_price ? newItem.sale_price : newItem.price) *
+          action.payload.quantity
 
         state.items.push({
           ...newItem,
           quantity: action.payload.quantity,
           totalPrice,
+          slug: {
+            _type: '',
+            current: '',
+          },
         })
       } else {
         const totalPrice =
           existingItem.totalPrice +
-          (existingItem.discount
-            ? calculateDiscountPercentage(
-                existingItem.price,
-                existingItem.discount,
-              ) * action.payload.quantity
+          (existingItem.sale_price
+            ? existingItem.sale_price * action.payload.quantity
             : existingItem.price * action.payload.quantity)
 
         existingItem.quantity += action.payload.quantity
@@ -62,38 +60,30 @@ const cartSlice = createSlice({
     },
 
     removeItemFromCart(
-      state: ICart,
-      action: PayloadAction<string>, //slug.current as payload
+      state: Cart,
+      action: PayloadAction<string>, //title as payload
     ) {
       const productSlug = action.payload
       const existingItem = state.items.find(
-        (item) => item.slug.current === productSlug,
+        (item) => item.title === productSlug,
       )
 
       state.totalQuantity--
 
       state.totalAmount =
         state.totalAmount -
-        (existingItem?.discount
-          ? calculateDiscountPercentage(
-              existingItem.price,
-              existingItem.discount,
-            )
+        (existingItem?.sale_price
+          ? existingItem.sale_price
           : existingItem?.price)!
 
       if (existingItem?.quantity === 1) {
-        state.items = state.items.filter(
-          (item) => item.slug.current !== productSlug,
-        )
+        state.items = state.items.filter((item) => item.title !== productSlug)
       } else {
         existingItem!.quantity--
         existingItem!.totalPrice =
           existingItem!.totalPrice -
-          (existingItem?.discount
-            ? calculateDiscountPercentage(
-                existingItem.price,
-                existingItem.discount,
-              )
+          (existingItem?.sale_price
+            ? existingItem.sale_price
             : existingItem?.price)!
       }
     },
