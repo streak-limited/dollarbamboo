@@ -241,5 +241,6 @@ const en: { [key: string]: string } = {
   myName: 'Zahra Mirzaei',
   cafeDX: 'Work is meant to improve life, not the opposite.',
   productAddedToCartMsg: 'Product added to cart successfully',
+  orderPlacedMsg: 'Order placed successfully',
 }
 export default en

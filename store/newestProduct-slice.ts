@@ -1,22 +1,20 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { IProduct } from "../lib/types/products";
-import { IProductList } from "../lib/types/productList";
+import { IProduct } from '../lib/types/products'
+import { Product } from '@/lib/types/product'
 
-const initialState: IProductList = {
-  productsList: [],
-};
+const initialState: Product[] = []
 
 const newestProductsSlice = createSlice({
-  name: "newestProducts",
+  name: 'newestProducts',
   initialState,
   reducers: {
-    addProducts(state, action: PayloadAction<IProduct[]>) {
-      state.productsList = action.payload;
+    addProducts(state, action: PayloadAction<{ productsList: Product[] }>) {
+      return action.payload.productsList
     },
   },
-});
+})
 
-export const newestProductsActions = newestProductsSlice.actions;
+export const newestProductsActions = newestProductsSlice.actions
 
-export default newestProductsSlice.reducer;
+export default newestProductsSlice.reducer

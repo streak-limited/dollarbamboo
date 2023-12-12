@@ -10,11 +10,12 @@ import {
   RiShoppingCart2Line,
 } from 'react-icons/ri'
 import { IProduct } from '../../../lib/types/products'
-import { IFavoriteRootState } from '../../../lib/types/favorite'
+import { IFavoriteRootState } from '../../../lib/types/ifavorite'
 
 import { toast } from 'react-toastify'
 import { useLanguage } from '../../../hooks/useLanguage'
 import { Product } from '@/lib/types/product'
+import { FavoriteRootState } from '@/lib/types/favorite'
 
 interface Props {
   product: Product
@@ -26,10 +27,10 @@ const CardActions: React.FC<Props> = ({ product }) => {
   const { theme } = useTheme()
 
   const favoriteItems = useSelector(
-    (state: IFavoriteRootState) => state.favorite.items,
+    (state: FavoriteRootState) => state.favorite.items,
   )
   const isInFavorite = favoriteItems.some(
-    (item) => item.slug.current === product.slug.current,
+    (item) => item.title === product.title,
   )
   const FavoriteIcon = isInFavorite ? RiHeartFill : RiHeartAddLine
 
@@ -43,7 +44,7 @@ const CardActions: React.FC<Props> = ({ product }) => {
   function toggleFavoriteHandler() {
     !isInFavorite
       ? dispatch(favoriteActions.addToFavorite(product))
-      : dispatch(favoriteActions.removeFromFavorite(product.slug.current))
+      : dispatch(favoriteActions.removeFromFavorite(product.title))
   }
 
   return (

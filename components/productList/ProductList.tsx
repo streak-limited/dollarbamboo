@@ -8,7 +8,6 @@ import Sort from './Sort'
 import { useDispatch, useSelector } from 'react-redux'
 import { SortedProductsListActions } from '../../store/sortedProductList-slice'
 import { useRouter } from 'next/router'
-import { IProductListRootState } from '../../lib/types/productList'
 import { Product, ProductListRootState } from '@/lib/types/product'
 
 interface Props {

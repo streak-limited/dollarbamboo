@@ -1,22 +1,23 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { IProduct } from "../lib/types/products";
-import { IOfferProducts } from "../lib/types/offerProductsState";
+import { IProduct } from '../lib/types/products'
+import { OfferProducts } from '../lib/types/offerProductsState'
+import { Product } from '@/lib/types/product'
 
-const initialState: IOfferProducts = {
+const initialState: OfferProducts = {
   specialOfferProducts: [],
-};
+}
 
 const specialOfferProductsSlice = createSlice({
-  name: "specialOfferProducts",
+  name: 'specialOfferProducts',
   initialState,
   reducers: {
-    addProducts(state, action: PayloadAction<IProduct[]>) {
-      state.specialOfferProducts = action.payload;
+    addProducts(state, action: PayloadAction<Product[]>) {
+      state.specialOfferProducts = action.payload
     },
   },
-});
+})
 
-export const specialOfferProductsActions = specialOfferProductsSlice.actions;
+export const specialOfferProductsActions = specialOfferProductsSlice.actions
 
-export default specialOfferProductsSlice.reducer;
+export default specialOfferProductsSlice.reducer

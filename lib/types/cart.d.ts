@@ -2,6 +2,12 @@ import { IProductDetails, TSlug } from './products'
 
 export interface CartProduct {
   // image: any
+  readonly id: string
+  created_at?: Date | FieldValue
+  updated_at?: Date | FieldValue
+  category_id?: string
+  sub_category_id?: string
+  // product_id?: string
   title: string
   slug: TSlug
   price: number

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { IProductList } from '../lib/types/productList'
 import { IProduct } from '../lib/types/products'
 import { sortByPoPularity } from '../utils/sortByPopularity'
 import { sortByCheapest, sortByExpensive } from '../utils/sortByCost'

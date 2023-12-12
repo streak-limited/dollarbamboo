@@ -1,14 +1,33 @@
-import React from "react";
-import { categorySmContent } from "../../mock/category-sm";
-import CategorySmBox from "./CategorySmBox";
-import { categoryLgContent } from "../../mock/category-lg";
-import CategoryLgBox from "./CategoryLgBox";
-import SectionTitle from "../UI/SectionTitle";
+import React from 'react'
+import { categorySmContent } from '../../mock/category-sm'
+import CategorySmBox from './CategorySmBox'
+import { categoryLgContent } from '../../mock/category-lg'
+import CategoryLgBox from './CategoryLgBox'
+import SectionTitle from '../UI/SectionTitle'
 
-const Category = () => {
+// Define the structure of category items
+interface CategoryItem {
+  bgc: string
+  imgSrc: string
+  categoryTitle: string
+  href: string
+  // other properties...
+}
+
+interface LargeCategoryItem extends CategoryItem {
+  name: string
+  title: string
+  description: string
+  styles: string
+  imgWidth: number
+  imgHeight: number
+}
+console.log('categoryLgContent', categoryLgContent)
+
+const Category: React.FC = () => {
   return (
     <div className="flex flex-col items-center my-4 md:my-8">
-      <SectionTitle title={"CategoryOfGoods"} />
+      <SectionTitle title={'CategoryOfGoods'} />
 
       {/* 📱 sm and md break point */}
       <div className="flex flex-wrap justify-around items-center lg:hidden">
@@ -21,7 +40,7 @@ const Category = () => {
               href={categoryItem.href}
               key={categoryItem.categoryTitle}
             />
-          );
+          )
         })}
       </div>
 
@@ -50,12 +69,12 @@ const Category = () => {
                 imgWidth={imgWidth}
                 imgHeight={imgHeight}
               />
-            );
-          }
+            )
+          },
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Category;
+export default Category

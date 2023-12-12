@@ -19,9 +19,7 @@ const ProductPrice: React.FC<Props> = ({
 }) => {
   const { t, locale } = useLanguage()
   const irPrice = useExchangeRateGBPToIRR(price)
-  const discountPrice = discount
-    ? calculateDiscountPercentage(price, discount)
-    : 0
+  const discountPrice = discount ? discount : 0
   const irDiscountPrice = useExchangeRateGBPToIRR(discountPrice)
 
   //style base on component position
@@ -67,8 +65,10 @@ const ProductPrice: React.FC<Props> = ({
             <span
               className="text-green-800 dark:text-green-200 ml-1 text-[12px] inline-block"
               style={{ direction: 'ltr' }}
-            >{`(-%${
-              locale === 'en' ? discount : changeNumbersFormatEnToFa(discount!)
+            >{`(-$${
+              locale === 'en'
+                ? price - discount
+                : changeNumbersFormatEnToFa(discount!)
             })`}</span>
           </div>
         ) : (

@@ -48,7 +48,7 @@ const SubMenu: React.FC<Props> = ({ subMenuItems }) => {
                       className="block text-sm rtl:ml-10 ltr:mr-10 font-bold px-2 ltr:border-l-4 rtl:border-r-4 border-palette-primary rounded-sm hover:text-palette-primary transition-color duration-300"
                       onClick={() => dispatch(megaMenuActions.closeMegaMenu())}
                     >
-                      {t[`${menuTitle.title}`]}
+                      {[`${menuTitle.title}`]}
                     </Link>
                     {/* {menuTitle.subtitles?.map((subTitle, index) => {
                       return (
