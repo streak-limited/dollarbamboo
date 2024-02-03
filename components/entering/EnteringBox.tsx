@@ -1,55 +1,57 @@
-import React, { useEffect, useRef } from "react";
-import Link from "next/link";
-import Input from "../UI/Input";
-import { useLanguage } from "../../hooks/useLanguage";
-import { IUser } from "../../lib/types/user";
+import React, { useEffect, useRef } from 'react'
+import Link from 'next/link'
+import Input from '../UI/Input'
+import { useLanguage } from '../../hooks/useLanguage'
+import { IUser } from '../../lib/types/user'
+import RhfTextField from '../rhf-form/rhf-text-field'
+import RHFWrapper from '../rhf-form/rhf-wrapper'
 
 interface Props {
-  title: string;
-  submitHandler: (user: IUser) => void;
-  errorMessage: string;
+  title: string
+  submitHandler: (user: IUser) => void
+  errorMessage: string
 }
 const EnteringBox: React.FC<Props> = ({
   title,
   submitHandler,
   errorMessage,
 }) => {
-  const userNameRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-  const emailRef = useRef<HTMLInputElement | null>(null);
-  const errorMessageRef = useRef<HTMLSpanElement | null>(null);
-  const { t } = useLanguage();
+  const userNameRef = useRef<HTMLInputElement | null>(null)
+  const passwordRef = useRef<HTMLInputElement | null>(null)
+  const emailRef = useRef<HTMLInputElement | null>(null)
+  const errorMessageRef = useRef<HTMLSpanElement | null>(null)
+  const { t } = useLanguage()
 
   if (errorMessage) {
-    title === "signUp" ? userNameRef.current?.focus() : null;
-    emailRef.current?.focus();
-    passwordRef.current?.focus();
+    title === 'signUp' ? userNameRef.current?.focus() : null
+    emailRef.current?.focus()
+    passwordRef.current?.focus()
   }
 
   function onSubmitHandler(e: React.FormEvent) {
-    e.preventDefault();
+    e.preventDefault()
     if (passwordRef.current?.value && emailRef.current?.value) {
-      let user: IUser | null = null;
-      if (userNameRef.current?.value && title === "signUp") {
+      let user: IUser | null = null
+      if (userNameRef.current?.value && title === 'signUp') {
         user = {
           name: userNameRef.current?.value,
           password: passwordRef.current?.value,
           email: emailRef.current?.value,
           isAdmin: false,
-        };
+        }
       } else {
         user = {
           password: passwordRef.current?.value,
           email: emailRef.current?.value,
-        };
+        }
       }
-      submitHandler(user);
+      submitHandler(user)
       // userNameRef.current.changeValue('');
       // passwordRef.current.changeValue('');
       // emailRef.current.changeValue('');
     }
   }
-  const linkHref = title === "login" ? "signUp" : "login";
+  const linkHref = title === 'login' ? 'signUp' : 'login'
 
   return (
     <div className="flex flex-col items-center justify-center mt-8">
@@ -57,7 +59,7 @@ const EnteringBox: React.FC<Props> = ({
         <h2 className="text-lg md:text-2xl font-bold">{t[`${title}`]}</h2>
         <p className="mt-4 mb-2">
           {t.hi}
-          {title === "login" ? (
+          {title === 'login' ? (
             <>
               <br />
               <span className="inline-block text-palette-mute dark:text-palette-base/80 text-[12px] mt-2 bg-palette-fill p-2">
@@ -68,7 +70,7 @@ const EnteringBox: React.FC<Props> = ({
         </p>
         <form onSubmit={onSubmitHandler}>
           <div className="mt-8">
-            {title === "signUp" ? (
+            {title === 'signUp' ? (
               <Input
                 ref={userNameRef}
                 type="text"
@@ -77,14 +79,25 @@ const EnteringBox: React.FC<Props> = ({
                 required={true}
               />
             ) : null}
-
+            <RHFWrapper
+            // onSubmit={(data) => console.log(data)}
+            >
+              <RhfTextField
+                label="電話"
+                name="phoneNumber"
+                placeHolder="電話"
+                divClass="relative mb-8"
+                inputClass="w-full py-4 px-6 border-[1px] border-gainsboro bg-palette-card outline-none rounded-lg shadow-md"
+                labelClass="absolute -top-[30%] ltr:left-3 rtl:right-3 bg-palette-card p-[0.3rem] whitespace-nowrap"
+              />
+            </RHFWrapper>
             <Input
               ref={emailRef}
               type="email"
               id="email"
               placeholder="enterYourEmail"
               required={true}
-              title={title === "login" ? "test@info.co" : undefined}
+              title={title === 'login' ? 'test@info.co' : undefined}
             />
 
             <Input
@@ -92,7 +105,7 @@ const EnteringBox: React.FC<Props> = ({
               type="password"
               id="password"
               placeholder="enterYourPassword"
-              title={title === "login" ? "123456" : undefined}
+              title={title === 'login' ? '123456' : undefined}
               required={true}
             />
           </div>
@@ -112,17 +125,15 @@ const EnteringBox: React.FC<Props> = ({
             {t[`${title}`]}
           </button>
         </form>
-        <Link href={`/${linkHref}`}>
-          <a className="block my-4">
-            <span className="text-sm text-palette-mute">
-              {title === "login" ? t.doHaveAnAccount : t.alreadyHaveAnAccount}
-            </span>
-            <span className="text-cyan-500">{t[`${linkHref}`]}</span>
-          </a>
+        <Link href={`/${linkHref}`} className="block my-4">
+          <span className="text-sm text-palette-mute">
+            {title === 'login' ? t.doHaveAnAccount : t.alreadyHaveAnAccount}
+          </span>
+          <span className="text-cyan-500">{t[`${linkHref}`]}</span>
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EnteringBox;
+export default EnteringBox

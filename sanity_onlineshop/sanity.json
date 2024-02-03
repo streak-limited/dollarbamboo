@@ -4,7 +4,7 @@
     "name": "onlineshop"
   },
   "api": {
-    "projectId": "3c4n15ly",
+    "projectId": "n2ivwii9",
     "dataset": "production"
   },
   "plugins": [
@@ -15,9 +15,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [

@@ -1,18 +1,18 @@
-import React from "react";
-import dynamic from "next/dynamic";
-import Menu from "./menu";
-import Logo from "./Logo";
-import Settings from "./Settings";
-import SearchBar from "./SearchBar";
-import CartIcon from "../cart/CartIcon";
-import Language from "./language/Language";
+import React from 'react'
+import dynamic from 'next/dynamic'
+import Menu from './menu'
+import Logo from './Logo'
+import Settings from './Settings'
+import SearchBar from './SearchBar'
+import CartIcon from '../cart/CartIcon'
+import Language from './language/Language'
 
-const UserBox = dynamic(() => import("./user"), {
+const UserBox = dynamic(() => import('./user'), {
   ssr: false,
-});
-const Theme = dynamic(() => import("./theme/Theme"), {
+})
+const Theme = dynamic(() => import('./theme/Theme'), {
   ssr: false,
-});
+})
 
 const index = () => {
   return (
@@ -44,7 +44,7 @@ const index = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default index;
+export default index

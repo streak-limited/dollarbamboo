@@ -1,47 +1,39 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { IProductList } from "../lib/types/productList";
-import { IProduct } from "../lib/types/products";
-import { sortByPoPularity } from "../utilities/sortByPopularity";
-import { sortByCheapest, sortByExpensive } from "../utilities/sortByCost";
-import { newestProductsFn } from "../utilities/sortByTimeStamp";
+import { IProduct } from '../lib/types/products'
+import { sortByPoPularity } from '../utils/sortByPopularity'
+import { sortByCheapest, sortByExpensive } from '../utils/sortByCost'
+import { newestProductsFn } from '../utils/sortByTimeStamp'
+import { Product } from '@/lib/types/product'
 
-const initialState: IProductList = {
-  productsList: [],
-};
+const initialState: Product[] = []
 
 const SortedProductsListSlice = createSlice({
-  name: "sortedProductsList",
+  name: 'sortedProductsList',
   initialState,
   reducers: {
     sortProductsList(
       state,
-      action: PayloadAction<{ productsList: IProduct[]; sortBasedOn: string }>
+      action: PayloadAction<{ productsList: Product[]; sortBasedOn: string }>,
     ) {
       switch (action.payload.sortBasedOn) {
-        case "all":
-          state.productsList = action.payload.productsList;
-          break;
-        case "newestProducts": {
-          state.productsList = newestProductsFn(state.productsList);
-          break;
-        }
-        case "popular": {
-          state.productsList = state.productsList.sort(sortByPoPularity);
-          break;
-        }
-        case "cheapest": {
-          state.productsList = state.productsList.sort(sortByCheapest);
-          break;
-        }
-        case "expensive": {
-          state.productsList = state.productsList.sort(sortByExpensive);
-          break;
-        }
+        case 'all':
+          return action.payload.productsList // Replace the entire state
+        case 'newestProducts':
+          return newestProductsFn(action.payload.productsList)
+        // case 'popular':
+        //   return [...action.payload.productsList].sort(sortByPoPularity);
+        case 'cheapest':
+          return [...action.payload.productsList].sort(sortByCheapest)
+        case 'expensive':
+          return [...action.payload.productsList].sort(sortByExpensive)
+        default:
+          return state // Return the current state if no matching case
       }
     },
   },
-});
-export const SortedProductsListActions = SortedProductsListSlice.actions;
+})
 
-export default SortedProductsListSlice.reducer;
+export const SortedProductsListActions = SortedProductsListSlice.actions
+
+export default SortedProductsListSlice.reducer

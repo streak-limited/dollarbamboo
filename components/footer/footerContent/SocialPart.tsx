@@ -13,19 +13,20 @@ const SocialPart = () => {
         <div className="flex mt-3">
           {socialMedia.map((SocialItem) => {
             return (
-              <Link href={SocialItem.href} key={SocialItem.name}>
-                <a
-                  className="px-2 opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out"
-                  aria-label={SocialItem.name}
-                >
-                  <SocialItem.icon
-                    style={{
-                      fontSize: "2rem",
-                      color: "inherit",
-                    }}
-                  />
-                </a>
-              </Link>
+              (<Link
+                href={SocialItem.href}
+                key={SocialItem.name}
+                className="px-2 opacity-60 hover:opacity-100 transition-opacity duration-300 ease-in-out"
+                aria-label={SocialItem.name}>
+
+                <SocialItem.icon
+                  style={{
+                    fontSize: "2rem",
+                    color: "inherit",
+                  }}
+                />
+
+              </Link>)
             );
           })}
         </div>

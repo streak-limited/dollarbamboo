@@ -1,23 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { ICartRootState, ICartProduct } from "../../lib/types/cart";
-import CartItem from "./CartItem";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { CartRootState, CartProduct } from '../../lib/types/cart'
+import CartItem from './CartItem'
 
 const CartList = () => {
-  const cartItems = useSelector((state: ICartRootState) => state.cart.items);
+  const cartItems = useSelector((state: CartRootState) => state.cart.items)
   return (
     <div>
       <div className="w-full xl:max-w-[2100px] mx-auto">
         {cartItems.length
-          ? cartItems.map((cartItem: ICartProduct) => {
-              return (
-                <CartItem key={cartItem.slug.current} product={cartItem} />
-              );
+          ? cartItems.map((cartItem: any) => {
+              return <CartItem key={cartItem.slug.current} product={cartItem} />
             })
           : null}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartList;
+export default CartList

@@ -1,7 +1,7 @@
 export const radioBtnValue = [
-  "all",
-  "newestProducts",
-  "popular",
-  "cheapest",
-  "expensive",
-];
+  'all',
+  'newestProducts',
+  // "popular",
+  'cheapest',
+  'expensive',
+]

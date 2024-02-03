@@ -1,32 +1,32 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IFavorite } from "../lib/types/favorite";
-import { IProduct } from "../lib/types/products";
+import { Favorite } from '@/lib/types/favorite'
+import { Product } from '@/lib/types/product'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IFavorite } from '../lib/types/ifavorite'
+import { IProduct } from '../lib/types/products'
 
-const initialState: IFavorite = {
+const initialState: Favorite = {
   items: [],
-};
+}
 
 const favoriteSlice = createSlice({
-  name: "favorite",
+  name: 'favorite',
   initialState,
   reducers: {
-    addToFavorite(state, action: PayloadAction<IProduct>) {
+    addToFavorite(state, action: PayloadAction<Product>) {
       state.items.push({
         ...action.payload,
-      });
+      })
     },
     removeFromFavorite(state, action: PayloadAction<string>) {
-      const productSlug = action.payload;
-      state.items = state.items.filter(
-        (item) => item.slug.current !== productSlug
-      );
+      const productSlug = action.payload
+      state.items = state.items.filter((item) => item.title !== productSlug)
     },
     clearCart(state) {
-      state = initialState;
+      state = initialState
     },
   },
-});
+})
 
-export const favoriteActions = favoriteSlice.actions;
+export const favoriteActions = favoriteSlice.actions
 
-export default favoriteSlice.reducer;
+export default favoriteSlice.reducer

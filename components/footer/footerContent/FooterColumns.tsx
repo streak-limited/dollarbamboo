@@ -16,11 +16,14 @@ const FooterColumns = () => {
             <div className="flex flex-col mt-2">
               {item.subtitles.map((subItem) => {
                 return (
-                  <Link href={subItem.href} key={subItem.text}>
-                    <a className="text-sm text-palette-base/90 px-4 py-2 hover:text-palette-base/100">
-                      {t[subItem.text]}
-                    </a>
-                  </Link>
+                  (<Link
+                    href={subItem.href}
+                    key={subItem.text}
+                    className="text-sm text-palette-base/90 px-4 py-2 hover:text-palette-base/100">
+
+                    {t[subItem.text]}
+
+                  </Link>)
                 );
               })}
             </div>

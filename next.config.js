@@ -3,26 +3,26 @@
 const nextConfig = {
   reactStrictMode: true,
   i18n: {
-    locales: ["en", "fa"],
-    defaultLocale: "en",
+    locales: ['en', 'fa'],
+    defaultLocale: 'en',
     localeDetection: false,
   },
   images: {
-    domains: ["cdn.sanity.io"],
+    domains: ['cdn.sanity.io', 'bgxtqrwqzepthzzfgqnv.supabase.co'],
   },
   webpack: function (config) {
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
       use: {
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 100000,
-          name: "[name].[ext]",
+          name: '[name].[ext]',
         },
       },
-    });
-    return config;
+    })
+    return config
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

@@ -31,8 +31,8 @@ const SideNavContent = () => {
               key={menuItem.title}
             >
               <menuItem.icon />
-              <Link href={menuItem.href}>
-                <a className="mx-4">{t[`${menuItem.title}`]}</a>
+              <Link href={menuItem.href} className="mx-4">
+                {t[`${menuItem.title}`]}
               </Link>
             </div>
           );
