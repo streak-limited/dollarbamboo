@@ -46,7 +46,7 @@ const OrderSummaryBox = () => {
     onSuccess: async () => {
       // toast.success(TEXT.TOAST_SUCCESS_EDIT_ADDRESS);
       // push(Paths.ACCOUNT_ADDRESS_BOOK);
-      // selectedShopRefetch(); a
+      // selectedShopRefetch();
     },
     onError: (error: Error) => {
       toast.error(error.message)
