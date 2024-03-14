@@ -1,17 +1,10 @@
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useState } from 'react'
 import {
-  Controller,
   Control,
+  Controller,
   FieldValues,
   useFormContext,
 } from 'react-hook-form'
-import Autocomplete from '../autocomplete'
-import ProductAutocomplete from '../product-autocomplete'
-import UserAutocomplete from '../user-autocomplete'
-import DiscountUserAutocomplete from '../discount-user-autocomplete'
-import DiscountProductAutocomplete from '../discount-product-autocomplete'
+// import DiscountProductAutocomplete from '../discount-product-autocomplete'
 
 type RhfDiscountProductAutocompleteProps = {
   noOptionFoundString: string
@@ -59,7 +52,7 @@ const RhfDiscountProductAutocomplete: React.FC<
 
         return (
           <div className={divClass}>
-            <DiscountProductAutocomplete
+            {/* <DiscountProductAutocomplete
               divClass={divClass}
               setIsPullDownOpen={setIsPullDownOpen}
               label={label}
@@ -74,7 +67,7 @@ const RhfDiscountProductAutocomplete: React.FC<
               shopId={shopId}
               multiple={multiple}
               // freeSolo={freeSolo} // Set to true if you want to allow free input
-            />
+            /> */}
             {fieldState.error && (
               <p className="text-red-500 mt-2 text-xs">
                 {fieldState.error.message}

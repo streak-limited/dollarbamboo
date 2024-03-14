@@ -129,7 +129,10 @@ export default function MenuBar({ editor }: { editor: any }) {
           {item.type === 'divider' ? (
             <div className="divider" />
           ) : (
-            <MenuItem {...item} />
+            <>
+              {/* @ts-ignore */}
+              <MenuItem {...item} />
+            </>
           )}
         </Fragment>
       ))}

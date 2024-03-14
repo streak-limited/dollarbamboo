@@ -25,7 +25,12 @@ const Newest = () => {
           ? newestProducts
               .slice(0, numProductToShow)
               .map((product: IProduct) => {
-                return <Card key={product.name} product={product} />
+                return (
+                  <>
+                    {/* @ts-ignore */}
+                    <Card key={product.name} product={product} />
+                  </>
+                )
               })
           : null}
       </div>

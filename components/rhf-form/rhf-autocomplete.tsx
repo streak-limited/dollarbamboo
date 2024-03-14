@@ -4,7 +4,7 @@ import {
   FieldValues,
   useFormContext,
 } from 'react-hook-form'
-import Autocomplete from '../autocomplete'
+// import Autocomplete from '../autocomplete'
 
 type RhfAutocompleteProps = {
   options: string[]
@@ -52,7 +52,7 @@ const RhfAutocomplete: React.FC<RhfAutocompleteProps> = ({
 
         return (
           <div className={divClass}>
-            <Autocomplete
+            {/* <Autocomplete
               disabled={disabled}
               divClass={divClass}
               setIsPullDownOpen={setIsPullDownOpen}
@@ -67,7 +67,7 @@ const RhfAutocomplete: React.FC<RhfAutocompleteProps> = ({
               onSelect={(option: string[]) => field.onChange(option)}
               multiple={multiple} // Set to true if you want to allow multiple selections
               freeSolo={freeSolo} // Set to true if you want to allow free input
-            />
+            /> */}
             {fieldState.error && (
               <p className="text-red-500 mt-2 text-xs">
                 {fieldState.error.message}

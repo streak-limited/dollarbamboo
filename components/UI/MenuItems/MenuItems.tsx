@@ -75,6 +75,7 @@ const MenuItems: React.FC<Props> = (props) => {
                     )
                   }
                 >
+                  {/* @ts-ignore */}
                   <item.icon className="w-6 h-6 " />
 
                   <div
@@ -111,6 +112,7 @@ const MenuItems: React.FC<Props> = (props) => {
                     )
                   }
                 >
+                  {/* @ts-ignore */}
                   <item.icon className="w-6 h-6 " />
                   <div
                     className={`mx-4 grow ${

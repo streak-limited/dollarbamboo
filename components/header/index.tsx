@@ -26,6 +26,7 @@ const index = () => {
           <Settings /> {/* 👈settings: md:hidden */}
           <div className="hidden md:flex md:items-center md:justify-between">
             <Language />
+            {/* @ts-ignore */}
             <Theme />
           </div>
         </div>
@@ -38,6 +39,7 @@ const index = () => {
             <SearchBar />
           </div>
           <div className="ltr:ml-2 rtl:mr-2 sm:ltr:ml-4 sm:rtl:mr-4 flex items-center justify-between ">
+            {/* @ts-ignore */}
             <UserBox />
             <CartIcon />
           </div>

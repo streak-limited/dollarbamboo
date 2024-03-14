@@ -1,6 +1,6 @@
 'use client'
 
-import CustomDatePicker from '@/app/(merchant)/_component/date-picker'
+// import CustomDatePicker from '@/app/(merchant)/_component/date-picker'
 import React from 'react'
 import {
   Control,
@@ -42,15 +42,17 @@ const RhfDatePicker: React.FC<RhfDatePickerProps> = ({
       defaultValue={defaultValue}
       rules={rules}
       render={({ field: { onChange, value }, fieldState }) => (
-        <CustomDatePicker
-          name={name}
-          value={value}
-          onDateRangeChange={onChange}
-          buttonClass={buttonClass}
-          datePickerClass={datePickerClass}
-          divClass={divClass}
-          {...props}
-        />
+        <>
+          {/* <CustomDatePicker
+            name={name}
+            value={value}
+            onDateRangeChange={onChange}
+            buttonClass={buttonClass}
+            datePickerClass={datePickerClass}
+            divClass={divClass}
+            {...props}
+          /> */}
+        </>
       )}
     />
   )

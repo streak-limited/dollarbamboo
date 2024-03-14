@@ -100,6 +100,7 @@ const MegaMenu = () => {
         <h3 className="ltr:ml-1 rtl:mr-1">{t.CategoryOfGoods}</h3>
       </div>
 
+      {/* @ts-ignore */}
       <Transition
         nodeRef={nodeRef}
         in={isMegaMenuOpen!}

@@ -1,5 +1,5 @@
 'use client'
-import CustomDateRangePicker from '@/app/(merchant)/_component/date-range-picker'
+// import CustomDateRangePicker from '@/app/(merchant)/_component/date-range-picker'
 import React from 'react'
 import {
   Controller,
@@ -40,7 +40,8 @@ const RhfDateRangePicker: React.FC<RhfDateRangePickerProps> = ({
       defaultValue={defaultValue}
       rules={rules}
       render={({ field: { onChange, value }, fieldState }) => (
-        <CustomDateRangePicker
+        <>
+          {/* <CustomDateRangePicker
           name={name}
           value={value}
           onDateRangeChange={onChange}
@@ -48,7 +49,8 @@ const RhfDateRangePicker: React.FC<RhfDateRangePickerProps> = ({
           datePickerClass={datePickerClass}
           divClass={divClass}
           {...props}
-        />
+          /> */}
+        </>
       )}
     />
   )

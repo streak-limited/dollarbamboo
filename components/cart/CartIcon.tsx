@@ -5,7 +5,7 @@ import { Transition } from 'react-transition-group'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { cartUiActions } from '../../store/cartUI-slice'
 import CartBox from './CartBox'
-import { ICartUiRootState, ICartRootState } from '../../lib/types/cart'
+// import { ICartUiRootState, ICartRootState } from '../../lib/types/cart'
 import { changeNumbersFormatEnToFa } from '../../utils/changeNumbersFormatEnToFa'
 import { useLanguage } from '../../hooks/useLanguage'
 
@@ -13,10 +13,12 @@ const Basket = () => {
   const dispatch = useDispatch()
   const { locale } = useLanguage()
   const showCartBox = useSelector(
-    (state: ICartUiRootState) => state.cartUi.cartBoxIsVisible,
+    (state: any) => state.cartUi.cartBoxIsVisible,
+    // (state: ICartUiRootState) => state.cartUi.cartBoxIsVisible,
   )
   const cartItemQuantity = useSelector(
-    (state: ICartRootState) => state.cart.totalQuantity,
+    (state: any) => state.cart.totalQuantity,
+    // (state: ICartRootState) => state.cart.totalQuantity,
   )
 
   const nodeRef = useRef<HTMLDivElement>(null)
@@ -42,6 +44,7 @@ const Basket = () => {
             : changeNumbersFormatEnToFa(cartItemQuantity)}
         </span>
       </Link>
+      {/* @ts-ignore */}
       <Transition
         nodeRef={nodeRef}
         in={showCartBox}

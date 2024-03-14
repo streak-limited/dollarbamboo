@@ -1,19 +1,19 @@
-import React, { useRef, useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
-import { HiChevronDown } from "react-icons/hi";
-import { Transition } from "react-transition-group";
-import UserAccountBox from "./UserAccountBox";
+import React, { useRef, useState } from 'react'
+import { AiOutlineUser } from 'react-icons/ai'
+import { HiChevronDown } from 'react-icons/hi'
+import { Transition } from 'react-transition-group'
+import UserAccountBox from './UserAccountBox'
 
 const UserAccountBtn = () => {
-  const [isUserBoxOpen, setIsUserBoxOpen] = useState(false);
-  const nodeRef = useRef<HTMLDivElement>(null);
+  const [isUserBoxOpen, setIsUserBoxOpen] = useState(false)
+  const nodeRef = useRef<HTMLDivElement>(null)
 
   function onClose() {
-    setIsUserBoxOpen((prev) => prev && false);
+    setIsUserBoxOpen((prev) => prev && false)
   }
 
   function onIconClickHandler() {
-    setIsUserBoxOpen((prev) => !prev);
+    setIsUserBoxOpen((prev) => !prev)
   }
 
   return (
@@ -22,9 +22,10 @@ const UserAccountBtn = () => {
         className="flex items-center p-2 cursor-pointer"
         onClick={onIconClickHandler}
       >
-        <AiOutlineUser style={{ fontSize: "1.5rem" }} />
+        <AiOutlineUser style={{ fontSize: '1.5rem' }} />
         <HiChevronDown />
       </div>
+      {/* @ts-ignore */}
       <Transition
         nodeRef={nodeRef}
         in={isUserBoxOpen}
@@ -43,11 +44,11 @@ const UserAccountBtn = () => {
                 <UserAccountBox onClose={onClose} />
               </div>
             </>
-          );
+          )
         }}
       </Transition>
     </div>
-  );
-};
+  )
+}
 
-export default UserAccountBtn;
+export default UserAccountBtn

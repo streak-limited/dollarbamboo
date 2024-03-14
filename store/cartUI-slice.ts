@@ -1,20 +1,20 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICartUI } from "../lib/types/cart";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+// import { ICartUI } from "../lib/types/cart";
 
-const initialState: ICartUI = {
+const initialState: any = {
   cartBoxIsVisible: false,
-};
+}
 
 const cartUiSlice = createSlice({
-  name: "cartUi",
+  name: 'cartUi',
   initialState,
   reducers: {
     toggleCartBox(state, action: PayloadAction<boolean>) {
-      state.cartBoxIsVisible = action.payload;
+      state.cartBoxIsVisible = action.payload
     },
   },
-});
+})
 
-export const cartUiActions = cartUiSlice.actions;
+export const cartUiActions = cartUiSlice.actions
 
-export default cartUiSlice.reducer;
+export default cartUiSlice.reducer

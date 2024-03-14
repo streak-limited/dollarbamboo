@@ -20,6 +20,7 @@ const DetailsSection: React.FC<Props> = ({ product }) => {
       <div className="flex items-start flex-wrap relative">
         <div className="flex-grow mt-6">
           <div className="flex items-center self-center">
+            {/* @ts-ignore */}
             <StarRatingComponent name="product_rate" starCount={5} value={5} />
             <p className="text-sm text-palette-mute rtl:mr-2 ltr:ml-2">
               {5} {t.stars}
