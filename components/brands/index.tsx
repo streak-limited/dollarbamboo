@@ -1,8 +1,8 @@
-import React from "react";
-import BrandBox from "./BrandBox";
-import { brandContent } from "../../mock/brand";
-import Slider from "react-slick";
-import SectionTitle from "../UI/SectionTitle";
+import React from 'react'
+import BrandBox from './BrandBox'
+import { brandContent } from '../../mock/brand'
+import Slider from 'react-slick'
+import SectionTitle from '../UI/SectionTitle'
 const Brands = () => {
   const settings = {
     infinite: true,
@@ -11,7 +11,7 @@ const Brands = () => {
     slidesToScroll: 4,
     autoplay: true,
     autoplaySpeed: 8000,
-    cssEase: "linear",
+    cssEase: 'linear',
     swipeToSlide: true,
     responsive: [
       {
@@ -36,11 +36,11 @@ const Brands = () => {
         },
       },
     ],
-  };
+  }
   return (
     <div className="p-1 my-4 md:my-8 text-center">
-      <SectionTitle title={"popularBrands"} />
-      <Slider {...settings}>
+      <SectionTitle title={'popularBrands'} />
+      {/* <Slider {...settings}>
         {brandContent.map((brandItem) => {
           return (
             <BrandBox
@@ -50,9 +50,9 @@ const Brands = () => {
             />
           );
         })}
-      </Slider>
+      </Slider> */}
     </div>
-  );
-};
+  )
+}
 
-export default Brands;
+export default Brands
